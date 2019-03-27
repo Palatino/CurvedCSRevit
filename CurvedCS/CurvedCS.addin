@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Name>Curved CS</Name>
+    <FullClassName>CurvedCS.CurvedCS</FullClassName>
+    <Text>Curved CS</Text>
+    <Description>Create approximate curved cross section</Description>
+    <VisibilityMode>NotVisibleWhenNoActiveDocument</VisibilityMode>
+    <Assembly>CurvedCS.dll</Assembly>
+    <AddInId>BB56898E-76D5-4181-A62E-9BFF4ABDAD24</AddInId>
+    <VendorId>Pablo Alvarez</VendorId>
+    <VendorDescription>www.linkedin.com/in/palvarezrio</VendorDescription>
+  </AddIn>
+</RevitAddIns>
