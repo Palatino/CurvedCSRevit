@@ -17,7 +17,7 @@ namespace CurvedCS
             //Convert all numeric values to internal units
             height = UnitUtils.ConvertToInternalUnits(height, DisplayUnitType.DUT_METERS);
             elevation = UnitUtils.ConvertToInternalUnits(elevation, DisplayUnitType.DUT_METERS);
-            view_depth = UnitUtils.ConvertToInternalUnits(view_depth, DisplayUnitType.DUT_METERS);
+            view_depth = UnitUtils.ConvertToInternalUnits(view_depth, DisplayUnitType.DUT_MILLIMETERS);
 
             //Filtered the document and get the view section, get its ID
             FilteredElementCollector filter = new FilteredElementCollector(doc);

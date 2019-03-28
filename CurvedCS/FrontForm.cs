@@ -21,6 +21,7 @@ namespace CurvedCS
         private int number_of_segments_val;
         private double height_val;
         private double elevation_val;
+        private double view_depth_val;
         private Autodesk.Revit.DB.ViewSheet sheet_val;
         private Autodesk.Revit.DB.ViewDetailLevel detail_level_val;
         private Autodesk.Revit.DB.DisplayStyle view_style_val;
@@ -28,7 +29,7 @@ namespace CurvedCS
         private string name_val;
         private bool importedHidden_val;
         private bool annotationHidden_val;
-        private bool all_data_correct = true;
+        private bool reverse;
 
 
 
@@ -60,6 +61,10 @@ namespace CurvedCS
             {
                 sheet_drop_down.Items.Add(code);
             }
+
+            sheet_drop_down.SelectedIndex = 0;
+            view_style_dropdown.SelectedIndex = 0;
+            detail_level_dropdown.SelectedIndex = 0;
         }
 
         private void SelectCurve_Click(object sender, EventArgs e)
@@ -71,24 +76,131 @@ namespace CurvedCS
                 Autodesk.Revit.DB.ModelCurve curve = ele as Autodesk.Revit.DB.ModelCurve;
                 crv = curve.GeometryCurve;
                 CurveID.Text = string.Format("Curve: {0}", curve.Id.ToString());
-                Show();
+                this.BringToFront();
 
             }
 
             catch
             {
                 TaskDialog.Show("Error", "Must select a model curve");
-                Show();
+                this.BringToFront();
             }
         }
 
         private void OK_Click(object sender, EventArgs e)
         {
-            // Validate number of elements
-            Validate_NumberOfSegments();
-            Validate_fromZ();
-            Validate_toZ();
+            // Validate and set number of elements
+            bool noS_OK = Validate_NumberOfSegments();
 
+            // Validate view detph
+            bool vdepth_ok = Validate_view_depth();
+
+            //Validate and set from Z
+            bool fromZ_OK = Validate_fromZ();
+
+            //Validate and set to Z
+            bool toZ_OK = Validate_toZ();
+
+            // Validate to Z > from Z
+
+            bool toZ_fZ;
+
+            if(height_val <= 0)
+            {
+                toZ_fZ = false;
+            }
+
+            else
+            {
+                toZ_fZ = true;
+            }
+            //Set view
+            sheet_val = viewsheets[sheet_drop_down.SelectedIndex];
+
+            // Set display Style
+
+            switch(view_style_dropdown.SelectedIndex)
+            {
+                case 0:
+                    view_style_val = Autodesk.Revit.DB.DisplayStyle.Wireframe;
+                    break;
+
+                case 1:
+                    view_style_val = Autodesk.Revit.DB.DisplayStyle.HLR;
+                    break;
+
+                case 2:
+                    view_style_val = Autodesk.Revit.DB.DisplayStyle.Shading;
+                    break;
+
+                case 3:
+                    view_style_val = Autodesk.Revit.DB.DisplayStyle.FlatColors;
+                    break;
+
+                case 4:
+                    view_style_val = Autodesk.Revit.DB.DisplayStyle.Realistic;
+                    break;
+
+            }
+
+            // Set detail level
+
+            switch(detail_level_dropdown.SelectedIndex)
+            {
+                case 0:
+                    detail_level_val = Autodesk.Revit.DB.ViewDetailLevel.Coarse;
+                    break;
+
+                case 1:
+                    detail_level_val = Autodesk.Revit.DB.ViewDetailLevel.Medium;
+                    break;
+
+                case 2:
+                    detail_level_val = Autodesk.Revit.DB.ViewDetailLevel.Fine;
+                    break;
+            }
+
+            //Validate and set scale
+
+            bool scale_OK  = Validate_scale();
+
+            // Validate and set name
+
+            bool name_OK = Validate_name();
+
+            //Set boolean values
+
+            annotationHidden_val = !showAnnotations.Checked;
+            importedHidden_val = !showLinks.Checked;
+            reverse = reverse_input.Checked;
+
+            if(name_OK & vdepth_ok & scale_OK & toZ_fZ & toZ_OK & fromZ_OK & noS_OK & !(crv == null))
+            {
+                try
+                {
+                    List<Autodesk.Revit.DB.ElementId> views = CurvedAux.SectionFromCurve(doc, number_of_segments_val, crv, this.height_val, this.elevation_val, view_depth_val, this.reverse);
+                    CurvedAux.SetSectionsProperties(doc, views, this.name_val, false, this.detail_level_val, this.view_style_val, this.annotationHidden_val, this.importedHidden_val, this.scale_val);
+                    CurvedAux.AlignSectionsOnSheet(doc, views, this.sheet_val);
+                    TaskDialog.Show("Curved cross section", "Cross sections created and added to sheet");
+                    this.BringToFront();
+                    //this.Dispose();
+                }
+
+                catch
+                {
+                    TaskDialog.Show("Erro","Something went wrong");
+                    this.BringToFront();
+                }
+            }
+
+            else
+            {
+                TaskDialog.Show("Error", error_message(name_OK,vdepth_ok, scale_OK, toZ_fZ, toZ_OK, fromZ_OK, noS_OK, !(crv==null)));
+                this.BringToFront();
+            }
+
+
+            
         }
 
         private bool Validate_NumberOfSegments()
@@ -99,9 +211,6 @@ namespace CurvedCS
 
                 if (seg <= 0)
                 {
-                    TaskDialog.Show("Error", "Number of elements must be a positive integer");
-
-                    this.Show();
                     return false;
                 }
                 else
@@ -113,8 +222,7 @@ namespace CurvedCS
 
             catch
             {
-                TaskDialog.Show("Error", "Number of elements must be a positive integer");
-                this.Show();
+
                 return false;
             }
         }
@@ -130,8 +238,6 @@ namespace CurvedCS
 
             catch
             {
-                TaskDialog.Show("Error", "From Z must be a number");
-                this.Show();
                 return false;
             }
         }
@@ -147,16 +253,121 @@ namespace CurvedCS
 
             catch
             {
-                TaskDialog.Show("Error", "From Z must be a number");
-                this.Show();
                 return false;
             }
         }
+        private bool Validate_view_depth()
+        {
+            try
+            {
+                double vd = Convert.ToDouble(viewDepth_BOX.Text);
+                if (vd < 0.6)
+                {
+                    view_depth_val = 7;
+                }
+                else
+                {
+                    view_depth_val = vd;
+                }
+                
+                return true;
 
+            }
 
+            catch
+            {
+                return false;
+            }
+        }
+        private bool Validate_scale()
+        {
+            try
+            {
+                int scl= Convert.ToInt32(scale_input.Text);
+
+                if (scl <= 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    scale_val = scl;
+                    return true;
+                }
+            }
+
+            catch
+            {
+
+                return false;
+            }
+
+        }
+        private bool Validate_name()
+        {
+            if (string.IsNullOrEmpty(secName.Text)  ||string.IsNullOrWhiteSpace(secName.Text))
+            {
+                return false;
+            }
+
+            else
+            {
+                name_val = secName.Text;
+                return true;
+            }
+        }
         private void sheet_drop_down_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+        private string error_message(bool name_OK, bool view_depth_OK ,bool scale_OK, bool toZ_fZ, bool toZ_OK, bool fromZ_OK , bool noS_OK, bool crv_OK)
+        {
+            string output = string.Empty;
+            
+            if (!name_OK)
+            {
+                output += "Provide valid name for views" + Environment.NewLine;
+            }
+            if (!scale_OK)
+            {
+                output += "Scale must be a positive integer" + Environment.NewLine;
+            }
+            if (!view_depth_OK)
+            {
+                output += "View depth must me a positve number > 0.6 mm" + Environment.NewLine;
+            }
+            if (!toZ_OK)
+            {
+                output += "To Z must be a number" + Environment.NewLine;
+            }
+            if (!fromZ_OK)
+            {
+                output += "From Z must be a number" + Environment.NewLine;
+            }
+            if (!fromZ_OK)
+            {
+                output += "To Z value must be a higher than from Z" + Environment.NewLine;
+            }
+            if (!noS_OK)
+            {
+                output += "Number of segments must be a positive integer" + Environment.NewLine;
+            }
+            if (!crv_OK)
+            {
+                output += "You have not selected a valid model curve" + Environment.NewLine;
+            }
+
+            return output;
+        }
+
+        private void viewDepth_BOX_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

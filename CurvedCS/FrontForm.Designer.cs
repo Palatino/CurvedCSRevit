@@ -41,18 +41,20 @@
             this.sheet_drop_down = new System.Windows.Forms.ComboBox();
             this.sheet = new System.Windows.Forms.Label();
             this.detailLevel = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.detail_level_dropdown = new System.Windows.Forms.ComboBox();
             this.visualStyle = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.view_style_dropdown = new System.Windows.Forms.ComboBox();
             this.scale = new System.Windows.Forms.Label();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             this.name = new System.Windows.Forms.Label();
             this.secName = new System.Windows.Forms.TextBox();
             this.showAnnotations = new System.Windows.Forms.CheckBox();
             this.NumericSegments = new System.Windows.Forms.TextBox();
             this.fromZ_Input = new System.Windows.Forms.TextBox();
             this.toZInput = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
+            this.scale_input = new System.Windows.Forms.TextBox();
+            this.reverse_input = new System.Windows.Forms.CheckBox();
+            this.viewDepth_BOX = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Title
@@ -60,7 +62,7 @@
             this.Title.AutoSize = true;
             this.Title.Font = new System.Drawing.Font("Futura Hv BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Title.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.Title.Location = new System.Drawing.Point(99, 9);
+            this.Title.Location = new System.Drawing.Point(85, 9);
             this.Title.Name = "Title";
             this.Title.Size = new System.Drawing.Size(171, 19);
             this.Title.TabIndex = 0;
@@ -107,7 +109,7 @@
             // toZ
             // 
             this.toZ.AutoSize = true;
-            this.toZ.Location = new System.Drawing.Point(42, 198);
+            this.toZ.Location = new System.Drawing.Point(42, 194);
             this.toZ.Name = "toZ";
             this.toZ.Size = new System.Drawing.Size(47, 13);
             this.toZ.TabIndex = 8;
@@ -127,7 +129,7 @@
             // showLinks
             // 
             this.showLinks.AutoSize = true;
-            this.showLinks.Location = new System.Drawing.Point(102, 393);
+            this.showLinks.Location = new System.Drawing.Point(102, 416);
             this.showLinks.Name = "showLinks";
             this.showLinks.Size = new System.Drawing.Size(109, 17);
             this.showLinks.TabIndex = 10;
@@ -142,6 +144,7 @@
             this.Cancel.TabIndex = 11;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
             // OK
             // 
@@ -157,7 +160,7 @@
             // 
             this.sheet_drop_down.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sheet_drop_down.FormattingEnabled = true;
-            this.sheet_drop_down.Location = new System.Drawing.Point(102, 244);
+            this.sheet_drop_down.Location = new System.Drawing.Point(102, 267);
             this.sheet_drop_down.Name = "sheet_drop_down";
             this.sheet_drop_down.Size = new System.Drawing.Size(194, 21);
             this.sheet_drop_down.TabIndex = 13;
@@ -166,7 +169,7 @@
             // sheet
             // 
             this.sheet.AutoSize = true;
-            this.sheet.Location = new System.Drawing.Point(54, 247);
+            this.sheet.Location = new System.Drawing.Point(54, 270);
             this.sheet.Name = "sheet";
             this.sheet.Size = new System.Drawing.Size(35, 13);
             this.sheet.TabIndex = 14;
@@ -175,69 +178,62 @@
             // detailLevel
             // 
             this.detailLevel.AutoSize = true;
-            this.detailLevel.Location = new System.Drawing.Point(26, 274);
+            this.detailLevel.Location = new System.Drawing.Point(26, 297);
             this.detailLevel.Name = "detailLevel";
             this.detailLevel.Size = new System.Drawing.Size(63, 13);
             this.detailLevel.TabIndex = 16;
             this.detailLevel.Text = "Detail Level";
             // 
-            // comboBox2
+            // detail_level_dropdown
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.detail_level_dropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.detail_level_dropdown.FormattingEnabled = true;
+            this.detail_level_dropdown.Items.AddRange(new object[] {
             "Coarse",
             "Medium",
             "Fine"});
-            this.comboBox2.Location = new System.Drawing.Point(102, 271);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(194, 21);
-            this.comboBox2.TabIndex = 15;
+            this.detail_level_dropdown.Location = new System.Drawing.Point(102, 294);
+            this.detail_level_dropdown.Name = "detail_level_dropdown";
+            this.detail_level_dropdown.Size = new System.Drawing.Size(194, 21);
+            this.detail_level_dropdown.TabIndex = 15;
             // 
             // visualStyle
             // 
             this.visualStyle.AutoSize = true;
-            this.visualStyle.Location = new System.Drawing.Point(26, 301);
+            this.visualStyle.Location = new System.Drawing.Point(26, 324);
             this.visualStyle.Name = "visualStyle";
             this.visualStyle.Size = new System.Drawing.Size(61, 13);
             this.visualStyle.TabIndex = 18;
             this.visualStyle.Text = "Visual Style";
             // 
-            // comboBox3
+            // view_style_dropdown
             // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.view_style_dropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.view_style_dropdown.FormattingEnabled = true;
+            this.view_style_dropdown.Items.AddRange(new object[] {
             "Wireframe",
             "Hidden Line",
             "Shaded",
             "Consistent Colours",
             "Realistic"});
-            this.comboBox3.Location = new System.Drawing.Point(102, 298);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(194, 21);
-            this.comboBox3.TabIndex = 17;
+            this.view_style_dropdown.Location = new System.Drawing.Point(102, 321);
+            this.view_style_dropdown.Name = "view_style_dropdown";
+            this.view_style_dropdown.Size = new System.Drawing.Size(194, 21);
+            this.view_style_dropdown.TabIndex = 17;
             // 
             // scale
             // 
             this.scale.AutoSize = true;
-            this.scale.Location = new System.Drawing.Point(40, 328);
+            this.scale.Location = new System.Drawing.Point(40, 351);
             this.scale.Name = "scale";
             this.scale.Size = new System.Drawing.Size(34, 13);
             this.scale.TabIndex = 19;
             this.scale.Text = "Scale";
             // 
-            // numericUpDown4
-            // 
-            this.numericUpDown4.Location = new System.Drawing.Point(103, 325);
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown4.TabIndex = 20;
-            // 
             // name
             // 
             this.name.AutoSize = true;
-            this.name.Location = new System.Drawing.Point(42, 358);
+            this.name.Location = new System.Drawing.Point(42, 381);
             this.name.Name = "name";
             this.name.Size = new System.Drawing.Size(35, 13);
             this.name.TabIndex = 21;
@@ -245,7 +241,7 @@
             // 
             // secName
             // 
-            this.secName.Location = new System.Drawing.Point(103, 355);
+            this.secName.Location = new System.Drawing.Point(103, 378);
             this.secName.Name = "secName";
             this.secName.Size = new System.Drawing.Size(193, 20);
             this.secName.TabIndex = 22;
@@ -253,7 +249,7 @@
             // showAnnotations
             // 
             this.showAnnotations.AutoSize = true;
-            this.showAnnotations.Location = new System.Drawing.Point(102, 427);
+            this.showAnnotations.Location = new System.Drawing.Point(102, 439);
             this.showAnnotations.Name = "showAnnotations";
             this.showAnnotations.Size = new System.Drawing.Size(112, 17);
             this.showAnnotations.TabIndex = 23;
@@ -281,24 +277,64 @@
             this.toZInput.Size = new System.Drawing.Size(120, 20);
             this.toZInput.TabIndex = 26;
             // 
+            // scale_input
+            // 
+            this.scale_input.Location = new System.Drawing.Point(103, 348);
+            this.scale_input.Name = "scale_input";
+            this.scale_input.Size = new System.Drawing.Size(120, 20);
+            this.scale_input.TabIndex = 27;
+            // 
+            // reverse_input
+            // 
+            this.reverse_input.AutoSize = true;
+            this.reverse_input.Location = new System.Drawing.Point(102, 462);
+            this.reverse_input.Name = "reverse_input";
+            this.reverse_input.Size = new System.Drawing.Size(66, 17);
+            this.reverse_input.TabIndex = 28;
+            this.reverse_input.Text = "Reverse";
+            this.reverse_input.UseVisualStyleBackColor = true;
+            // 
+            // viewDepth_BOX
+            // 
+            this.viewDepth_BOX.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.viewDepth_BOX.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.viewDepth_BOX.Location = new System.Drawing.Point(176, 221);
+            this.viewDepth_BOX.Name = "viewDepth_BOX";
+            this.viewDepth_BOX.Size = new System.Drawing.Size(120, 20);
+            this.viewDepth_BOX.TabIndex = 30;
+            this.viewDepth_BOX.Text = "7";
+            this.viewDepth_BOX.TextChanged += new System.EventHandler(this.viewDepth_BOX_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(42, 224);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 13);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "View Depth(mm)";
+            // 
             // FrontForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(330, 589);
+            this.Controls.Add(this.viewDepth_BOX);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.reverse_input);
+            this.Controls.Add(this.scale_input);
             this.Controls.Add(this.toZInput);
             this.Controls.Add(this.fromZ_Input);
             this.Controls.Add(this.NumericSegments);
             this.Controls.Add(this.showAnnotations);
             this.Controls.Add(this.secName);
             this.Controls.Add(this.name);
-            this.Controls.Add(this.numericUpDown4);
             this.Controls.Add(this.scale);
             this.Controls.Add(this.visualStyle);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.view_style_dropdown);
             this.Controls.Add(this.detailLevel);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.detail_level_dropdown);
             this.Controls.Add(this.sheet);
             this.Controls.Add(this.sheet_drop_down);
             this.Controls.Add(this.OK);
@@ -315,7 +351,6 @@
             this.Name = "FrontForm";
             this.Text = "Curved Cross Section";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -336,16 +371,19 @@
         private System.Windows.Forms.ComboBox sheet_drop_down;
         private System.Windows.Forms.Label sheet;
         private System.Windows.Forms.Label detailLevel;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox detail_level_dropdown;
         private System.Windows.Forms.Label visualStyle;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox view_style_dropdown;
         private System.Windows.Forms.Label scale;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
         private System.Windows.Forms.Label name;
         private System.Windows.Forms.TextBox secName;
         private System.Windows.Forms.CheckBox showAnnotations;
         private System.Windows.Forms.TextBox NumericSegments;
         private System.Windows.Forms.TextBox fromZ_Input;
         private System.Windows.Forms.TextBox toZInput;
+        private System.Windows.Forms.TextBox scale_input;
+        private System.Windows.Forms.CheckBox reverse_input;
+        private System.Windows.Forms.TextBox viewDepth_BOX;
+        private System.Windows.Forms.Label label1;
     }
 }
