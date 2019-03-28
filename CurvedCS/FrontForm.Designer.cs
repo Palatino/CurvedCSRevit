@@ -63,7 +63,7 @@
             this.Title.AutoSize = true;
             this.Title.Font = new System.Drawing.Font("Futura Hv BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Title.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.Title.Location = new System.Drawing.Point(85, 9);
+            this.Title.Location = new System.Drawing.Point(76, 9);
             this.Title.Name = "Title";
             this.Title.Size = new System.Drawing.Size(171, 19);
             this.Title.TabIndex = 0;
@@ -92,7 +92,7 @@
             // numberSegments
             // 
             this.numberSegments.AutoSize = true;
-            this.numberSegments.Location = new System.Drawing.Point(42, 134);
+            this.numberSegments.Location = new System.Drawing.Point(42, 130);
             this.numberSegments.Name = "numberSegments";
             this.numberSegments.Size = new System.Drawing.Size(104, 13);
             this.numberSegments.TabIndex = 4;
@@ -101,7 +101,7 @@
             // fromZ
             // 
             this.fromZ.AutoSize = true;
-            this.fromZ.Location = new System.Drawing.Point(42, 166);
+            this.fromZ.Location = new System.Drawing.Point(42, 160);
             this.fromZ.Name = "fromZ";
             this.fromZ.Size = new System.Drawing.Size(57, 13);
             this.fromZ.TabIndex = 6;
@@ -110,7 +110,7 @@
             // toZ
             // 
             this.toZ.AutoSize = true;
-            this.toZ.Location = new System.Drawing.Point(42, 194);
+            this.toZ.Location = new System.Drawing.Point(42, 190);
             this.toZ.Name = "toZ";
             this.toZ.Size = new System.Drawing.Size(47, 13);
             this.toZ.TabIndex = 8;
@@ -130,7 +130,7 @@
             // showLinks
             // 
             this.showLinks.AutoSize = true;
-            this.showLinks.Location = new System.Drawing.Point(102, 416);
+            this.showLinks.Location = new System.Drawing.Point(102, 415);
             this.showLinks.Name = "showLinks";
             this.showLinks.Size = new System.Drawing.Size(109, 17);
             this.showLinks.TabIndex = 10;
@@ -139,7 +139,7 @@
             // 
             // Cancel
             // 
-            this.Cancel.Location = new System.Drawing.Point(176, 490);
+            this.Cancel.Location = new System.Drawing.Point(176, 500);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(136, 55);
             this.Cancel.TabIndex = 11;
@@ -149,7 +149,7 @@
             // 
             // OK
             // 
-            this.OK.Location = new System.Drawing.Point(12, 490);
+            this.OK.Location = new System.Drawing.Point(12, 500);
             this.OK.Name = "OK";
             this.OK.Size = new System.Drawing.Size(136, 55);
             this.OK.TabIndex = 12;
@@ -161,7 +161,7 @@
             // 
             this.sheet_drop_down.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sheet_drop_down.FormattingEnabled = true;
-            this.sheet_drop_down.Location = new System.Drawing.Point(102, 267);
+            this.sheet_drop_down.Location = new System.Drawing.Point(102, 270);
             this.sheet_drop_down.Name = "sheet_drop_down";
             this.sheet_drop_down.Size = new System.Drawing.Size(194, 21);
             this.sheet_drop_down.TabIndex = 13;
@@ -179,7 +179,7 @@
             // detailLevel
             // 
             this.detailLevel.AutoSize = true;
-            this.detailLevel.Location = new System.Drawing.Point(26, 297);
+            this.detailLevel.Location = new System.Drawing.Point(26, 300);
             this.detailLevel.Name = "detailLevel";
             this.detailLevel.Size = new System.Drawing.Size(63, 13);
             this.detailLevel.TabIndex = 16;
@@ -193,7 +193,7 @@
             "Coarse",
             "Medium",
             "Fine"});
-            this.detail_level_dropdown.Location = new System.Drawing.Point(102, 294);
+            this.detail_level_dropdown.Location = new System.Drawing.Point(102, 300);
             this.detail_level_dropdown.Name = "detail_level_dropdown";
             this.detail_level_dropdown.Size = new System.Drawing.Size(194, 21);
             this.detail_level_dropdown.TabIndex = 15;
@@ -201,7 +201,7 @@
             // visualStyle
             // 
             this.visualStyle.AutoSize = true;
-            this.visualStyle.Location = new System.Drawing.Point(26, 324);
+            this.visualStyle.Location = new System.Drawing.Point(26, 330);
             this.visualStyle.Name = "visualStyle";
             this.visualStyle.Size = new System.Drawing.Size(61, 13);
             this.visualStyle.TabIndex = 18;
@@ -217,7 +217,7 @@
             "Shaded",
             "Consistent Colours",
             "Realistic"});
-            this.view_style_dropdown.Location = new System.Drawing.Point(102, 321);
+            this.view_style_dropdown.Location = new System.Drawing.Point(102, 330);
             this.view_style_dropdown.Name = "view_style_dropdown";
             this.view_style_dropdown.Size = new System.Drawing.Size(194, 21);
             this.view_style_dropdown.TabIndex = 17;
@@ -225,7 +225,7 @@
             // scale
             // 
             this.scale.AutoSize = true;
-            this.scale.Location = new System.Drawing.Point(40, 351);
+            this.scale.Location = new System.Drawing.Point(40, 360);
             this.scale.Name = "scale";
             this.scale.Size = new System.Drawing.Size(34, 13);
             this.scale.TabIndex = 19;
@@ -234,7 +234,7 @@
             // name
             // 
             this.name.AutoSize = true;
-            this.name.Location = new System.Drawing.Point(42, 381);
+            this.name.Location = new System.Drawing.Point(42, 390);
             this.name.Name = "name";
             this.name.Size = new System.Drawing.Size(35, 13);
             this.name.TabIndex = 21;
@@ -242,7 +242,7 @@
             // 
             // secName
             // 
-            this.secName.Location = new System.Drawing.Point(103, 378);
+            this.secName.Location = new System.Drawing.Point(102, 390);
             this.secName.Name = "secName";
             this.secName.Size = new System.Drawing.Size(193, 20);
             this.secName.TabIndex = 22;
@@ -250,7 +250,7 @@
             // showAnnotations
             // 
             this.showAnnotations.AutoSize = true;
-            this.showAnnotations.Location = new System.Drawing.Point(102, 439);
+            this.showAnnotations.Location = new System.Drawing.Point(102, 440);
             this.showAnnotations.Name = "showAnnotations";
             this.showAnnotations.Size = new System.Drawing.Size(112, 17);
             this.showAnnotations.TabIndex = 23;
@@ -259,28 +259,28 @@
             // 
             // NumericSegments
             // 
-            this.NumericSegments.Location = new System.Drawing.Point(176, 131);
+            this.NumericSegments.Location = new System.Drawing.Point(176, 130);
             this.NumericSegments.Name = "NumericSegments";
             this.NumericSegments.Size = new System.Drawing.Size(120, 20);
             this.NumericSegments.TabIndex = 24;
             // 
             // fromZ_Input
             // 
-            this.fromZ_Input.Location = new System.Drawing.Point(176, 163);
+            this.fromZ_Input.Location = new System.Drawing.Point(176, 160);
             this.fromZ_Input.Name = "fromZ_Input";
             this.fromZ_Input.Size = new System.Drawing.Size(120, 20);
             this.fromZ_Input.TabIndex = 25;
             // 
             // toZInput
             // 
-            this.toZInput.Location = new System.Drawing.Point(176, 191);
+            this.toZInput.Location = new System.Drawing.Point(176, 190);
             this.toZInput.Name = "toZInput";
             this.toZInput.Size = new System.Drawing.Size(120, 20);
             this.toZInput.TabIndex = 26;
             // 
             // scale_input
             // 
-            this.scale_input.Location = new System.Drawing.Point(103, 348);
+            this.scale_input.Location = new System.Drawing.Point(102, 360);
             this.scale_input.Name = "scale_input";
             this.scale_input.Size = new System.Drawing.Size(120, 20);
             this.scale_input.TabIndex = 27;
@@ -288,7 +288,7 @@
             // reverse_input
             // 
             this.reverse_input.AutoSize = true;
-            this.reverse_input.Location = new System.Drawing.Point(102, 462);
+            this.reverse_input.Location = new System.Drawing.Point(102, 465);
             this.reverse_input.Name = "reverse_input";
             this.reverse_input.Size = new System.Drawing.Size(66, 17);
             this.reverse_input.TabIndex = 28;
@@ -299,7 +299,7 @@
             // 
             this.viewDepth_BOX.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.viewDepth_BOX.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.viewDepth_BOX.Location = new System.Drawing.Point(176, 221);
+            this.viewDepth_BOX.Location = new System.Drawing.Point(176, 220);
             this.viewDepth_BOX.Name = "viewDepth_BOX";
             this.viewDepth_BOX.Size = new System.Drawing.Size(120, 20);
             this.viewDepth_BOX.TabIndex = 30;
@@ -309,7 +309,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(42, 224);
+            this.label1.Location = new System.Drawing.Point(42, 220);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 13);
             this.label1.TabIndex = 29;
