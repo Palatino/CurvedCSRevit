@@ -55,6 +55,7 @@
             this.reverse_input = new System.Windows.Forms.CheckBox();
             this.viewDepth_BOX = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Title
@@ -118,13 +119,13 @@
             // signature
             // 
             this.signature.AutoSize = true;
-            this.signature.Font = new System.Drawing.Font("Futura Hv BT", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.signature.Font = new System.Drawing.Font("Futura Hv BT", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.signature.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.signature.Location = new System.Drawing.Point(128, 562);
+            this.signature.Location = new System.Drawing.Point(179, 563);
             this.signature.Name = "signature";
-            this.signature.Size = new System.Drawing.Size(190, 18);
+            this.signature.Size = new System.Drawing.Size(139, 15);
             this.signature.TabIndex = 9;
-            this.signature.Text = "by Pablo  Alvarez  - 2019";
+            this.signature.Text = "by Pablo Alvarez -2019";
             // 
             // showLinks
             // 
@@ -152,7 +153,7 @@
             this.OK.Name = "OK";
             this.OK.Size = new System.Drawing.Size(136, 55);
             this.OK.TabIndex = 12;
-            this.OK.Text = "OK";
+            this.OK.Text = "Generate Sections";
             this.OK.UseVisualStyleBackColor = true;
             this.OK.Click += new System.EventHandler(this.OK_Click);
             // 
@@ -310,16 +311,28 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(42, 224);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 13);
+            this.label1.Size = new System.Drawing.Size(87, 13);
             this.label1.TabIndex = 29;
-            this.label1.Text = "View Depth(mm)";
+            this.label1.Text = "View Depth (mm)";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Futura Hv BT", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label2.Location = new System.Drawing.Point(77, 578);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(241, 15);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "https://www.linkedin.com/in/palvarezrio/";
             // 
             // FrontForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(330, 589);
+            this.ClientSize = new System.Drawing.Size(330, 602);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.viewDepth_BOX);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.reverse_input);
@@ -385,5 +398,6 @@
         private System.Windows.Forms.CheckBox reverse_input;
         private System.Windows.Forms.TextBox viewDepth_BOX;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

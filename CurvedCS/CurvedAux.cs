@@ -158,6 +158,7 @@ namespace CurvedCS
                     all_changed = false;
                 }
                 
+              
 
                 trans.Commit();
             }
@@ -191,6 +192,9 @@ namespace CurvedCS
 
         public static void AlignSectionsOnSheet(Document doc, List<ElementId> viewsIds, ViewSheet sheet)
         {
+            //test reverse viewids
+
+            viewsIds.Reverse();
 
             //Get scale value of first view
 

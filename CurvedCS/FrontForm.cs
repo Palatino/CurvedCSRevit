@@ -179,16 +179,25 @@ namespace CurvedCS
                 try
                 {
                     List<Autodesk.Revit.DB.ElementId> views = CurvedAux.SectionFromCurve(doc, number_of_segments_val, crv, this.height_val, this.elevation_val, view_depth_val, this.reverse);
-                    CurvedAux.SetSectionsProperties(doc, views, this.name_val, false, this.detail_level_val, this.view_style_val, this.annotationHidden_val, this.importedHidden_val, this.scale_val);
+                    bool PropertiesApplied = CurvedAux.SetSectionsProperties(doc, views, this.name_val, false, this.detail_level_val, this.view_style_val, this.annotationHidden_val, this.importedHidden_val, this.scale_val);
                     CurvedAux.AlignSectionsOnSheet(doc, views, this.sheet_val);
-                    TaskDialog.Show("Curved cross section", "Cross sections created and added to sheet");
+                    if (PropertiesApplied)
+                    {
+                        TaskDialog.Show("Curved cross section", "Cross sections created and added to sheet");
+                    }
+
+                    else
+                    {
+                        TaskDialog.Show("Curved cross section", "Cross sections created and added to the sheet."+ 
+                            Environment.NewLine + "Some of the view properties could not be changed (probably because a view templates is applied to section views).");
+                    }
                     this.BringToFront();
                     //this.Dispose();
                 }
 
                 catch
                 {
-                    TaskDialog.Show("Erro","Something went wrong");
+                    TaskDialog.Show("Error","Something went wrong");
                     this.BringToFront();
                 }
             }
