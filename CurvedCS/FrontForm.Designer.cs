@@ -360,7 +360,7 @@
             this.Controls.Add(this.CurveID);
             this.Controls.Add(this.SelectCurve);
             this.Controls.Add(this.Title);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrontForm";
             this.Text = "Curved Cross Section";
             this.Load += new System.EventHandler(this.Form1_Load);

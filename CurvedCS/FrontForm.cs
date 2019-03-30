@@ -168,13 +168,15 @@ namespace CurvedCS
 
             bool name_OK = Validate_name();
 
+            //Check name is free
+            bool free_name = IsNameFree();
             //Set boolean values
 
             annotationHidden_val = !showAnnotations.Checked;
             importedHidden_val = !showLinks.Checked;
             reverse = reverse_input.Checked;
 
-            if(name_OK & vdepth_ok & scale_OK & toZ_fZ & toZ_OK & fromZ_OK & noS_OK & !(crv == null))
+            if(name_OK & vdepth_ok & scale_OK & toZ_fZ & toZ_OK & fromZ_OK & noS_OK & !(crv == null) & free_name)
             {
                 try
                 {
@@ -204,7 +206,7 @@ namespace CurvedCS
 
             else
             {
-                TaskDialog.Show("Error", error_message(name_OK,vdepth_ok, scale_OK, toZ_fZ, toZ_OK, fromZ_OK, noS_OK, !(crv==null)));
+                TaskDialog.Show("Error", error_message(name_OK,vdepth_ok, scale_OK, toZ_fZ, toZ_OK, fromZ_OK, noS_OK, !(crv==null), free_name));
                 this.BringToFront();
             }
 
@@ -329,7 +331,21 @@ namespace CurvedCS
         {
 
         }
-        private string error_message(bool name_OK, bool view_depth_OK ,bool scale_OK, bool toZ_fZ, bool toZ_OK, bool fromZ_OK , bool noS_OK, bool crv_OK)
+        private bool IsNameFree()
+        {
+            IList<Autodesk.Revit.DB.Element> views = new Autodesk.Revit.DB.FilteredElementCollector(doc).OfClass(typeof(Autodesk.Revit.DB.View)).ToElements();
+            foreach (Autodesk.Revit.DB.Element ele in views)
+            {
+                if (ele.Name == string.Format("{0} 1",this.name_val))
+                {
+                    return false;
+
+                }
+            }
+            return true;
+        }
+
+        private string error_message(bool name_OK, bool view_depth_OK ,bool scale_OK, bool toZ_fZ, bool toZ_OK, bool fromZ_OK , bool noS_OK, bool crv_OK, bool free_name)
         {
             string output = string.Empty;
             
@@ -365,7 +381,10 @@ namespace CurvedCS
             {
                 output += "You have not selected a valid model curve" + Environment.NewLine;
             }
-
+            if (!free_name)
+            {
+                output += "The name provided for the sections is already in use, please delete previous sections or change name." + Environment.NewLine;
+            }
             return output;
         }
 
